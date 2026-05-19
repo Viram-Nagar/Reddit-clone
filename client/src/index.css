@@ -1,0 +1,413 @@
+/* ─── Tailwind v4 — single import replaces all directives ── */
+@import "tailwindcss";
+
+/* ─── Google Fonts ──────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+
+/* ─── Theme (replaces tailwind.config.js) ───────────────── */
+@theme {
+  /* Reddit brand colors */
+  --color-reddit-orange: #ff4500;
+  --color-reddit-blue: #0079d3;
+  --color-reddit-dark: #1a1a1b;
+  --color-reddit-darker: #121213;
+  --color-reddit-light: #dae0e6;
+  --color-reddit-border: #edeff1;
+  --color-reddit-text: #1c1c1c;
+  --color-reddit-muted: #878a8c;
+
+  /* Font family */
+  --font-sans: "IBM Plex Sans", sans-serif;
+
+  /* Animations */
+  --animate-fade-in: fadeIn 0.2s ease-out;
+  --animate-fade-up: fadeUp 0.3s ease-out;
+  --animate-slide-in: slideIn 0.3s ease-out;
+  --animate-slide-down: slideDown 0.2s ease-out;
+  --animate-scale-in: scaleIn 0.15s ease-out;
+  --animate-bounce-in: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: -200% 0;
+  }
+  to {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* ─── Dark Mode Variant ──────────────────────────────────── */
+/* This enables dark: prefix classes in Tailwind v4 */
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── CSS Variables for dark mode ───────────────────────── */
+:root {
+  --bg-primary: #dae0e6;
+  --bg-card: #ffffff;
+  --bg-input: #f6f7f8;
+  --bg-hover: #f6f7f8;
+  --text-primary: #1c1c1c;
+  --text-secondary: #878a8c;
+  --border-color: #edeff1;
+  --border-hover: #818384;
+}
+
+.dark {
+  --bg-primary: #1a1a1b;
+  --bg-card: #272729;
+  --bg-input: #1a1a1b;
+  --bg-hover: #313135;
+  --text-primary: #d7dadc;
+  --text-secondary: #818384;
+  --border-color: #343536;
+  --border-hover: #818384;
+}
+
+/* ─── Base Styles ────────────────────────────────────────── */
+@layer base {
+  * {
+    box-sizing: border-box;
+    transition-property: background-color, border-color, color;
+    transition-duration: 150ms;
+    transition-timing-function: ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: #ff4500;
+    color: white;
+  }
+}
+
+/* ─── Component Classes ──────────────────────────────────── */
+@layer components {
+  /* ── Buttons ─────────────────────────────────────────── */
+  .btn-primary {
+    background-color: #ff4500;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transition: all 150ms ease;
+    text-decoration: none;
+
+    &:hover:not(:disabled) {
+      background-color: #e03d00;
+    }
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    &:focus-visible {
+      outline: 2px solid #ff4500;
+      outline-offset: 2px;
+    }
+  }
+
+  .btn-secondary {
+    background-color: transparent;
+    color: #ff4500;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: 1.5px solid #ff4500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+    transition: all 150ms ease;
+
+    &:hover:not(:disabled) {
+      background-color: rgba(255, 69, 0, 0.06);
+    }
+    &:active:not(:disabled) {
+      transform: scale(0.95);
+    }
+    &:focus-visible {
+      outline: 2px solid #ff4500;
+      outline-offset: 2px;
+    }
+  }
+
+  .btn-ghost {
+    background-color: transparent;
+    color: #6b7280;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.25rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: all 150ms ease;
+
+    &:hover {
+      background-color: #e5e7eb;
+    }
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  /* Dark mode ghost button */
+  .dark .btn-ghost {
+    color: #9ca3af;
+    &:hover {
+      background-color: #374151;
+    }
+  }
+
+  /* ── Cards ───────────────────────────────────────────── */
+  .card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    transition:
+      border-color 150ms,
+      background-color 150ms;
+  }
+
+  .card-hover {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 0.375rem;
+    cursor: pointer;
+    transition: all 150ms ease;
+
+    &:hover {
+      border-color: #9ca3af;
+    }
+  }
+
+  /* ── Inputs ──────────────────────────────────────────── */
+  .input {
+    width: 100%;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border-radius: 0.25rem;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    transition: all 150ms ease;
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+    &:focus {
+      outline: none;
+      border-color: #0079d3;
+      box-shadow: 0 0 0 1px #0079d3;
+    }
+  }
+
+  /* ── Navbar ──────────────────────────────────────────── */
+  .navbar {
+    background-color: var(--bg-card);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 30;
+  }
+
+  /* ── Skeleton loader ─────────────────────────────────── */
+  .skeleton {
+    background-color: #e5e7eb;
+    border-radius: 0.25rem;
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .dark .skeleton {
+    background-color: #374151;
+  }
+
+  /* ── Shimmer ─────────────────────────────────────────── */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      transparent 25%,
+      rgba(255, 255, 255, 0.15) 50%,
+      transparent 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* ─── Utility Classes ────────────────────────────────────── */
+@layer utilities {
+  /* Scrollbar */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+  }
+  .dark .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #4b5563;
+  }
+
+  /* Hide scrollbar */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Text gradient */
+  .text-gradient {
+    background: linear-gradient(to right, #ff4500, #fb923c);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glass */
+  .glass {
+    backdrop-filter: blur(12px);
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+  .dark .glass {
+    background-color: rgba(17, 24, 39, 0.8);
+  }
+
+  /* Line clamp */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  /* Focus ring */
+  .focus-ring {
+    outline: 2px solid #ff4500;
+    outline-offset: 2px;
+  }
+}

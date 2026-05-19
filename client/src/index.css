@@ -4,8 +4,8 @@
 /* ─── Google Fonts ──────────────────────────────────────── */
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
 
-/* ─── Theme (replaces tailwind.config.js) ───────────────── */
-@theme {
+/* ─── Theme Variables ───────────────────────────────────── */
+:root {
   /* Reddit brand colors */
   --color-reddit-orange: #ff4500;
   --color-reddit-blue: #0079d3;
@@ -28,9 +28,18 @@
   --animate-bounce-in: bounceIn 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --animate-shimmer: shimmer 1.5s infinite;
   --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+
+  /* Light theme */
+  --bg-primary: #dae0e6;
+  --bg-card: #ffffff;
+  --bg-input: #f6f7f8;
+  --bg-hover: #f6f7f8;
+  --text-primary: #1c1c1c;
+  --text-secondary: #878a8c;
+  --border-color: #edeff1;
+  --border-hover: #818384;
 }
 
-/* ─── Keyframes ─────────────────────────────────────────── */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -123,16 +132,6 @@
 @variant dark (&:where(.dark, .dark *));
 
 /* ─── CSS Variables for dark mode ───────────────────────── */
-:root {
-  --bg-primary: #dae0e6;
-  --bg-card: #ffffff;
-  --bg-input: #f6f7f8;
-  --bg-hover: #f6f7f8;
-  --text-primary: #1c1c1c;
-  --text-secondary: #878a8c;
-  --border-color: #edeff1;
-  --border-hover: #818384;
-}
 
 .dark {
   --bg-primary: #1a1a1b;

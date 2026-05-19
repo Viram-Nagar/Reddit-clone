@@ -56,12 +56,30 @@ export default defineConfig({
 
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["react", "react-dom"],
-          router: ["react-router-dom"],
-          ui: ["lucide-react", "react-hot-toast"],
-          state: ["zustand"],
-          forms: ["react-hook-form", "@hookform/resolvers", "zod"],
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            if (id.includes("react-router-dom")) {
+              return "router";
+            }
+
+            if (
+              id.includes("react-hook-form") ||
+              id.includes("@hookform/resolvers") ||
+              id.includes("zod")
+            ) {
+              return "forms";
+            }
+
+            if (id.includes("lucide-react") || id.includes("react-hot-toast")) {
+              return "ui";
+            }
+
+            if (id.includes("zustand")) {
+              return "state";
+            }
+
+            return "vendor";
+          }
         },
       },
     },

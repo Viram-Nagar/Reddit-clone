@@ -9,8 +9,8 @@ const generateToken = (res, userId) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: isProduction, // HTTPS only in production
-    sameSite: isProduction ? "none" : "strict", // 'none' needed for cross-origin
+    secure: true, // HTTPS only in production
+    sameSite: "none", // 'none' needed for cross-origin
     maxAge: 7 * 24 * 60 * 60 * 1000,
     path: "/",
   });

@@ -63,14 +63,17 @@ app.use(
       if (allowedOrigins.includes(origin)) {
         return callback(null, true);
       }
+      console.error(`CORS blocked origin: ${origin}`);
       callback(new Error(`CORS blocked: ${origin}`));
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["set-cookie"],
   }),
 );
 
+app.set("trust proxy", 1);
 // ─── Body Parsing ─────────────────────────────────────
 app.use(express.json({ limit: "10kb" })); // Limit body size
 app.use(express.urlencoded({ extended: true, limit: "10kb" }));

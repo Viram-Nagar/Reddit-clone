@@ -20,20 +20,6 @@ Password: password123
 
 ---
 
-## 📋 Table of Contents
-
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Architecture](#-architecture)
-- [Database Schema](#-database-schema)
-- [API Documentation](#-api-documentation)
-- [Getting Started](#-getting-started)
-- [Environment Variables](#-environment-variables)
-- [Deployment](#-deployment)
-- [Screenshots](#-screenshots)
-
----
-
 ## ✨ Features
 
 ### Core Features
@@ -323,7 +309,7 @@ npm run test:watch          # Watch mode
 
 ### Server (`server/.env`)
 
-```env
+````env
 # Database
 DATABASE_URL="postgresql://postgres:PASSWORD@HOST:5432/DATABASE"
 
@@ -336,17 +322,12 @@ PORT=5000
 NODE_ENV="development"
 CLIENT_URL="http://localhost:5173"
 
-# Cloudinary
-CLOUDINARY_CLOUD_NAME="your_cloud_name"
-CLOUDINARY_API_KEY="your_api_key"
-CLOUDINARY_API_SECRET="your_api_secret"
-```
 
 ### Client (`client/.env.production`)
 
 ```env
 VITE_API_URL="https://your-backend.onrender.com"
-```
+````
 
 ---
 
